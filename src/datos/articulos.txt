@@ -1,0 +1,10 @@
+001, Pack de sarten con diseño, 10.0
+002, Rayador multifuncional, 25.0
+003, Pelador de frutas, 28.0
+004, Picador de vegetales, 25.0
+005, Mini Licuadora, 28.0
+006, Tacho de basura pegable, 21.0
+007, Tabla de picar pegable, 15.0
+008, Pequeña balanza, 18.0
+009, Hervidora de huevos, 25.0
+010, Dispensador de menestras, 80.0
