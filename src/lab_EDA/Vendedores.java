@@ -215,7 +215,7 @@ public class Vendedores
         }
     }
     
-    public void VendedorOpciones(ArrayList<Vendedores>listaVendedores, ArrayList<Cliente> listaClientes, ArrayList<Ventas> listaVenta, ArrayList<Articulo> listArticulo)
+    public void VendedorOpciones(ArrayList<Vendedores>listaVendedores, ArrayList<Cliente> listaClientes, ArrayList<Ventas> listaVenta, ArrayList<Articulo> listArticulo, ArrayList<Proveedor> listaProve)
     {
         Scanner entry = new Scanner(System.in);
 
@@ -327,17 +327,28 @@ public class Vendedores
                        System.out.println(" 4 - Modificar proveedores. ");
                        System.out.println(" 0 - Regresar. ");
                        
+                       Proveedor prove = new Proveedor(); 
                        eleccion = Integer.parseInt(entry.nextLine()); 
                        regresar = false;
                         while(!regresar)
                        {
                            switch(eleccion)
                            {
-                               case 1: //listar
+                               case 1: //crear
+                                   prove.insertarProveedor(prove, entry);
                                    break; 
-                               case 2: //eliminar
+                               case 2: //listar
+                                   prove.listarProveedor(listaProve, DNI);
+                                   break; 
+                               case 3: //eliminar
+                                   System.out.println("Ingrese el RUC del proveedor que desea eliminar: ");
+                                   String RUC = entry.nextLine(); 
+                                   prove.eliminarProveedor(listaProve, RUC);
                                    break;
-                               case 3: //modificar
+                               case 4: //modificar
+                                   System.out.println("Ingrese el RUC del proveedor que desea modificar: ");
+                                   RUC = entry.nextLine(); 
+                                   prove.modificarProveedor(listaProve, RUC, entry);
                                    break; 
                                case 0:
                                    regresar = true; 
@@ -355,17 +366,28 @@ public class Vendedores
                        System.out.println(" 3 - Eliminar artículos. ");
                        System.out.println(" 4 - Modificar artículos. ");
                        System.out.println(" 0 - Regresar. ");
+                       Articulo art = new Articulo(); 
                        eleccion = Integer.parseInt(entry.nextLine()); 
                        regresar = false;
                         while(!regresar)
                        {
                            switch(eleccion)
                            {
-                               case 1: //listar
-                                   break; 
-                               case 2: //eliminar
+                               case 1: // crear
+                                   art.insertarArticulo(art, entry);
                                    break;
-                               case 3: //modificar
+                               case 2: //listar
+                                   art.listarArticulo(listArticulo, Integer.parseInt(art.codigo));
+                                   break; 
+                               case 3: //eliminar
+                                   System.out.println("Inserte codigo de articulo que desea eliminar: ");
+                                   int cod = Integer.parseInt(entry.nextLine()); 
+                                   art.eliminarArticulo(listArticulo, cod);
+                                   break;
+                               case 4: //modificar
+                                   System.out.println("Inserte codigo de articulo que desea modificar: ");
+                                   cod = Integer.parseInt(entry.nextLine()); 
+                                   art.modificarArticulo(listArticulo, cod, entry);
                                    break; 
                                case 0:
                                    regresar = true; 

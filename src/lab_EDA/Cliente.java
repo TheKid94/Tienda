@@ -142,8 +142,8 @@ public class Cliente {
                     Cliente cl = new Cliente();  
                     incluirCliente(cl, entry); 
                     listaClientes.add(cl);
-                    mnucli = false;
                     GuardarDatosClienteTxt(listaClientes); 
+                    mnucli = true; 
                     break; 
                 case 0: 
                     regresar = true;

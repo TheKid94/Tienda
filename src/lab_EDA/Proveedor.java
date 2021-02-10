@@ -144,7 +144,7 @@ public class Proveedor {
         GuardarDatosTxt(lista);
     }
     
-    public static void listarProveedor(ArrayList<Proveedor> lista, int i){
+    public void listarProveedor(ArrayList<Proveedor> lista, int i){
         if(0<i ){
             listarProveedor(lista, i-1);
         }

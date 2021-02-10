@@ -146,7 +146,7 @@ public class Articulo {
         GuardarDatosTxt(lista);
     }
     
-    public static void listarArticulo(ArrayList<Articulo> lista, int i){
+    public void listarArticulo(ArrayList<Articulo> lista, int i){
         if(0<i ){
             listarArticulo(lista, i-1);
         }
