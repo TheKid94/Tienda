@@ -25,7 +25,8 @@ public class Ventas {
     private int DNI; 
     private int nroVentas;
     private int cantidad;
-    private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\ventas.txt";
+    //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\ventas.txt";
+    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\ventas.txt";
  
     
     // Este constructor nos permite crear una venta sin ningún atributo.
@@ -85,7 +86,7 @@ public class Ventas {
     } 
     
    
-    public void CrearVenta(Ventas ven, Scanner entrada, ArrayList<Ventas> listaVentas, ArrayList<Articulo> listArticulo){
+    public void CrearVenta(Ventas ven, Scanner entrada, ArrayList<Ventas> listaVentas, ArrayList<Articulo> listArticulo, int dni,String nombre){
                     System.out.println("¡Hola!");
                     Ventas a = new Ventas(); //se crea una nueva venta
                     //se instancia una venta vacia y se llena                      
@@ -116,6 +117,8 @@ public class Ventas {
                     System.out.println("¿Cuantos productos desea?");
                     int n = Integer.parseInt(entrada.nextLine());
                     a.setCant(n);
+                    a.setDNI(dni);
+                    a.setCliente(nombre);
                     System.out.println("Precio:");
                     System.out.println(arti.Precios(objeto, n)); 
                     System.out.println("¿Finalizar la compra?");
@@ -123,12 +126,13 @@ public class Ventas {
                     System.out.println("2.- Salir.");
                     
                     int respuesta = Integer.parseInt(entrada.nextLine());
-                                        switch(respuesta)
+                    switch(respuesta)
                     {
                         case 1: 
                             System.out.println("¡Gracias por su compra!"); 
                              // Y lo guardamos en la lista de ventas utilizando el método de la lista .add(a);
-                            listaVentas.add(a);                               
+                            listaVentas.add(a);
+                            a.GuardarDatosVentaTxt(listaVentas);
                             break; 
                         case 2: 
                             System.out.println("lo sentimos, vuelva pronto");
@@ -195,7 +199,7 @@ public class Ventas {
         {
             listarVentas(listaVenta, i-1);
         }
-        System.out.println("N° Venta" + (i+1)); 
+        System.out.println("N° Venta: " + (i+1)); 
         System.out.println("Nombre: " + listaVenta.get(i).getCliente());
         System.out.println("DNI: " + listaVenta.get(i).getDNI()); 
         System.out.println("Articulo: " + listaVenta.get(i).getArticulo());
@@ -242,55 +246,50 @@ public class Ventas {
     }    
     
         //Creo no usaremos esto
-//     public void VentaOpciones(ArrayList<Articulo> listaArticulos)    
-//    {
-//        
-//        Scanner entry = new Scanner(System.in);
-//        
-//        boolean regresar = false;
-//        while(!regresar){
-//            System.out.println("====SELECCIONE LAS OPCIONES PARA ARTICULO===");
-//            System.out.println(" 1 - Crear Articulo ");
-//            System.out.println(" 2 - Listar Articulos");
-//            System.out.println(" 3 - Eliminar Articulo ");
-//            System.out.println(" 4 - Modificar Articulo ");
-//            System.out.println(" 0 - Regresar ");
-//            
-//            int option = Integer.parseInt(entry.nextLine());
-//            switch(option) {
-//                case 1:
-//                    Articulo ar = new Articulo(); 
-//                    insertarArticulo(ar, entry);
-//                    listaArticulos.add(ar);
-//                    GuardarDatosTxt(listaArticulos);
-//                    break;
-//                case 2:
-//                    if(listaArticulos.size()==0){
-//                        System.out.println("No hay registro de Articulos");
-//                    }else{
-//                        listarArticulo(listaArticulos,listaArticulos.size()-1); 
-//                    }
-//                    break;
-//                case 3:
-//                    System.out.println(" Ingrese el codigo de Articulo a eliminar");
-//                    int eli = Integer.parseInt(entry.nextLine());
-//                    eliminarArticulo(listaArticulos, eli);
-//                    break;
-//                case 4:
-//                    System.out.println(" Ingrese el codigo de Articulo a mdificar");
-//                    int cod = Integer.parseInt(entry.nextLine());
-//                    modificarArticulo(listaArticulos, cod, entry);
-//                    break;
-//                case 0:
-//                    regresar = true;
-//                    System.out.println("Regresando\n");
-//                    break;
-//                default:
-//                    System.out.println("Opcion invalida!\n");
-//                break;
-//            }
-//        }
-//        
-//    }
+        //Uhmmm creo que si :vv
+    
+     public void VentaOpciones(ArrayList<Ventas> listaVentas, ArrayList<Articulo> listArticulos)    
+    {
+        
+        Scanner entry = new Scanner(System.in);
+        
+        boolean regresar = false;
+        while(!regresar){
+            System.out.println("====SELECCIONE ALGUNA OPCION ===");
+            System.out.println(" 1 - Listar ventas. ");
+            System.out.println(" 2 - Eliminar ventas. ");
+            System.out.println(" 3 - Modificar ventas. ");                       
+            System.out.println(" 0 - Regresar. ");
+            
+            int option = Integer.parseInt(entry.nextLine());
+            switch(option) {
+                case 1:
+                    if(listaVentas.size()==0){
+                        System.out.println("No hay registro de Ventas");
+                    }else{
+                        listarVentas(listaVentas,listaVentas.size()-1); 
+                    }
+                    break;
+                case 2:
+                    System.out.println(" Ingrese el N° de Venta a eliminar");
+                    int eli = Integer.parseInt(entry.nextLine());
+                    eliminarVenta(listaVentas, eli);
+                    break;
+                case 3:
+                    System.out.println(" Ingrese el N° de Venta a mdificar");
+                    int cod = Integer.parseInt(entry.nextLine());
+                    modificarVentas(listaVentas, cod, entry, listArticulos);
+                    break;
+                case 0:
+                    regresar = true;
+                    System.out.println("Regresando\n");
+                    break;
+                default:
+                    System.out.println("Opcion invalida!\n");
+                break;
+            }
+        }
+        
+    }
     
 }

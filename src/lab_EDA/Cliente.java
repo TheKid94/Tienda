@@ -18,7 +18,8 @@ import java.util.Scanner;
  * @author VVT
  */
 public class Cliente {
-    private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\Clientes.txt";
+    //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\Clientes.txt";
+    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\Clientes.txt";
     public int DNI;
     public String nombre;
     public String ApellidoPa;
@@ -85,53 +86,55 @@ public class Cliente {
             System.out.println("2.- Registrarse.");
             System.out.println("0.- Regresar al menu.");
             
-            int opcion = Integer.parseInt(entry.nextLine());
             boolean mnucli = false; 
             while(!mnucli)
             {
-                 switch(opcion)
+                
+                int opcion = Integer.parseInt(entry.nextLine());
+                switch(opcion)
                 {
-                case 1: 
-                    mnucli = false;
+                case 1:
                     System.out.println("Digita tu documento de identidad.");
-                    if(BuscarCliente(entry, listaClientes) == true)
+                    int cd = Integer.parseInt(entry.nextLine());
+                    if(BuscarCliente(cd, listaClientes) == true)
                     {
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Comprar ");
-                       System.out.println(" 2 - Modificar cuenta ");
-                       System.out.println(" 3 - Eliminar cuenta ");                       
-                       System.out.println(" 0 - Cerrar cuenta ");
-                       
-                       int option = Integer.parseInt(entry.nextLine());
-                       boolean cerrar = false; 
-                       while(!cerrar)
-                       {
-                            switch(option)
-                            {
-                                case 1: 
-                                    Ventas ven = new Ventas(); 
-                                    ven.CrearVenta(ven, entry, listaVentas, listArticulo);
-                                    break; 
-                                case 2: 
-                                    System.out.println("Ingrese su documento de identidad." + "\n");
-                                    int dni = Integer.parseInt(entry.nextLine());
-                                    modificarCliente(listaClientes, dni, entry);
-                                    break; 
-                                case 3:
-                                    System.out.println(" Ingrese su documento de identidad." + "\n");
-                                    int eli = Integer.parseInt(entry.nextLine());
-                                    eliminarCliente(listaClientes, eli);                                    
-                                    break;
-                                case 0: 
-                                    cerrar = true; 
-                                    mnucli = true; 
-                                    regresar = true; 
-                                    break; 
-                                default: 
-                                    System.out.println("Opción inválida."); 
-                                    break; 
-                            }
-                       }                       
+                       int cli_dni = buscarClienteDNI(cd, listaClientes);
+                       String cli_nombre = buscarClienteNombre(cd, listaClientes);
+                       boolean bu = false;
+                       while(!bu){
+                           System.out.println("====SELECCIONE ALGUNA OPCION ===");
+                           System.out.println(" 1 - Comprar ");
+                           System.out.println(" 2 - Modificar cuenta ");
+                           System.out.println(" 3 - Eliminar cuenta ");                       
+                           System.out.println(" 0 - Cerrar cuenta ");
+                           int option = Integer.parseInt(entry.nextLine());
+                       switch(option)
+                        {
+                            case 1: 
+                                Ventas ven = new Ventas(); 
+                                ven.CrearVenta(ven, entry, listaVentas, listArticulo,cli_dni,cli_nombre);
+                                break; 
+                            case 2: 
+                                System.out.println("Ingrese su documento de identidad." + "\n");
+                                int dni = Integer.parseInt(entry.nextLine());
+                                modificarCliente(listaClientes, dni, entry);
+                                break; 
+                            case 3:
+                                System.out.println(" Ingrese su documento de identidad." + "\n");
+                                int eli = Integer.parseInt(entry.nextLine());
+                                eliminarCliente(listaClientes, eli);                                    
+                                break;
+                            case 0:
+                                mnucli = true;
+                                bu = true;
+                                regresar = true; 
+                                break; 
+                            default: 
+                                System.out.println("Opción inválida."); 
+                                break; 
+                        }
+                       }
+                                      
                     }
                     else
                     {
@@ -160,26 +163,41 @@ public class Cliente {
 
     }
     
-    public boolean BuscarCliente(Scanner entry, ArrayList<Cliente> listaClientes)
+    public boolean BuscarCliente(int cd, ArrayList<Cliente> listaClientes)
     {
-        int dni = entry.nextInt();
+        int dni = cd;
         boolean ingreso = false;
         for(Cliente cli : listaClientes)
             {
-               if(dni == cli.getDNI())
+               if(cli.getDNI() == dni)
                {
-                   ingreso = true; 
-               }
-               else
-               {
-                  
-                   ingreso = false; 
+                   ingreso = true;
                }
             }
         return ingreso; 
     }
     
-     public void incluirCliente(Cliente cli, Scanner entry){
+    public int buscarClienteDNI(int cd,ArrayList<Cliente> listaClientes){
+        int dni = 0;
+        for(Cliente cli : listaClientes){
+            if(cli.getDNI() == cd){
+                dni = cli.getDNI();
+            }
+        }
+        return dni;
+    }
+    
+    public String buscarClienteNombre(int cd,ArrayList<Cliente> listaClientes){
+        String nombre = "";
+        for(Cliente cli : listaClientes){
+            if(cli.getDNI() == cd){
+                nombre = cli.getNombre();
+            }
+        }
+        return nombre;
+    }
+    
+    public void incluirCliente(Cliente cli, Scanner entry){
                     System.out.println("Ingrese Nombre:");
                     cli.setNombre(entry.nextLine());
                     
@@ -260,9 +278,8 @@ public class Cliente {
             BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME));
             for(Cliente cli : listaCliente)
             {
-                bw.write("DNI: " + cli.getDNI() + "\n" + "Nombre: "+ cli.getNombre() + "\n "
-                         + "Apellido paterno: " + cli.getApellidoPa() + 
-                        "Apellido materno: " + cli.getApellidoMa() + "\n");
+                bw.write(cli.getDNI() + ", "+ cli.getNombre() + ", " + cli.getApellidoPa() + 
+                        ", " + cli.getApellidoMa() + "\n");
             }
             bw.close();
         } 
@@ -271,7 +288,8 @@ public class Cliente {
             System.out.println( e.getMessage());
         }
     }
-    public static void getDatosClienteTxt(ArrayList<Cliente> listaCliente)
+    
+   public static void getDatosClienteTxt(ArrayList<Cliente> listaCliente)
     {
         try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) 
         {   
@@ -292,5 +310,56 @@ public class Cliente {
         {  
             e.getMessage();
         }
+    }
+   
+   public void articuloOpcionesV(ArrayList<Cliente> listaCliente)    
+    {
+        
+        Scanner entry = new Scanner(System.in);
+        
+        boolean regresar = false;
+        while(!regresar){
+            System.out.println("====SELECCIONE LAS OPCIONES PARA CLIENTES===");
+            System.out.println(" 1 - Crear Articulo ");
+            System.out.println(" 2 - Listar Articulos");
+            System.out.println(" 3 - Eliminar Articulo ");
+            System.out.println(" 4 - Modificar Articulo ");
+            System.out.println(" 0 - Regresar ");
+            
+            int option = Integer.parseInt(entry.nextLine());
+            switch(option) {
+                case 1:
+                    Cliente ar = new Cliente(); 
+                    incluirCliente(ar, entry);
+                    listaCliente.add(ar);
+                    GuardarDatosClienteTxt(listaCliente);
+                    break;
+                case 2:
+                    if(listaCliente.size()==0){
+                        System.out.println("No hay registro de Clientes");
+                    }else{
+                        listarClientes(listaCliente,listaCliente.size()-1); 
+                    }
+                    break;
+                case 3:
+                    System.out.println(" Ingrese el dni del Cliente a eliminar");
+                    int eli = Integer.parseInt(entry.nextLine());
+                    eliminarCliente(listaCliente, eli);
+                    break;
+                case 4:
+                    System.out.println(" Ingrese el dni del Cliente a mdificar");
+                    int cod = Integer.parseInt(entry.nextLine());
+                    modificarCliente(listaCliente, cod, entry);
+                    break;
+                case 0:
+                    regresar = true;
+                    System.out.println("Regresando\n");
+                    break;
+                default:
+                    System.out.println("Opcion invalida!\n");
+                break;
+            }
+        }
+        
     }
 }

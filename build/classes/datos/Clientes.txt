@@ -1,3 +1,3 @@
-DNI: 72942257
-Nombre: Alessandra
- Apellido paterno: Rea�oApellido materno: Olaya
+12345678, John, Wilk, Goodman
+10203040, Walter, White, Heisenberg
+87654231, Jesse, Pinkman, Biznets

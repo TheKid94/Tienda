@@ -19,7 +19,8 @@ import java.util.Scanner;
  */
 public class Vendedores 
 {
-    private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\vendedores.txt";
+    //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\vendedores.txt";
+    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\vendedores.txt";
     public int DNI;
     public String nombre;
     public String ApellidoPa;
@@ -181,9 +182,9 @@ public class Vendedores
             BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME));
             for(Vendedores vend : listaVendedores)
             {
-                bw.write("DNI: " + vend.getDNI() + "\n" + "Nombre: "+ vend.getNombre() + "\n "
-                         + "Apellido paterno: " + vend.getApellidoPa() + 
-                        "Apellido materno: " + vend.getApellidoMa() + "\n");
+                bw.write(vend.getDNI() + ", " + vend.getNombre() + ", "
+                         + vend.getApellidoPa() + 
+                        ", " + vend.getApellidoMa() + "\n");
             }
             bw.close();
         } 
@@ -215,7 +216,7 @@ public class Vendedores
         }
     }
     
-    public void VendedorOpciones(ArrayList<Vendedores>listaVendedores, ArrayList<Cliente> listaClientes, ArrayList<Ventas> listaVenta, ArrayList<Articulo> listArticulo, ArrayList<Proveedor> listaProve)
+    public void VendedorOpciones(ArrayList<Vendedores> listaVendedores, ArrayList<Cliente> listaClientes, ArrayList<Ventas> listaVenta, ArrayList<Articulo> listArticulo, ArrayList<Proveedor> listaProve)
     {
         Scanner entry = new Scanner(System.in);
 
@@ -244,198 +245,60 @@ public class Vendedores
                 switch(opcion)
                 {
                     case 1: //ventas
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Listar ventas. ");
-                       System.out.println(" 2 - Eliminar ventas. ");
-                       System.out.println(" 3 - Modificar ventas. ");                       
-                       System.out.println(" 0 - Regresar. ");
-                       
-                       int eleccion = Integer.parseInt(entry.nextLine());
-                       Ventas ven = new Ventas(); 
-                       boolean regresar = false; 
-                       while(!regresar)
-                       {
-                           switch(eleccion)
-                           {                              
-                               case 1: //listar                                   
-                                   ven.listarVentas(listaVenta, DNI);
-                                   break; 
-                               case 2: //eliminar
-                                   System.out.println("Introduzca el nroVenta que desea eliminar.");
-                                   int nroV = Integer.parseInt(entry.nextLine()); 
-                                   ven.eliminarVenta(listaVenta, nroV);
-                                   break;
-                               case 3: //modificar
-                                   System.out.println("Introduzca el nroVenta que desea modificar.");
-                                   nroV = Integer.parseInt(entry.nextLine());
-                                   ven.modificarVentas(listaVenta, nroV, entry, listArticulo);
-                                   break; 
-                               case 0:
-                                   regresar = true; 
-                                   break; 
-                               default: 
-                                   System.out.println("Opción inválida");
-                                   break; 
-                           }
-                       }
-                        break; 
-                    case 2: //clientes
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Crear cliente. ");
-                       System.out.println(" 2 - Listar clientes. ");
-                       System.out.println(" 3 - Eliminar cliente. ");
-                       System.out.println(" 4 - Modificar cliente. ");
-                       System.out.println(" 0 - Regresar. ");
-                       
-                       eleccion = Integer.parseInt(entry.nextLine()); 
-                       Cliente cli = new Cliente(); 
-                       regresar = false;
-                        while(!regresar)
-                       {
-                           switch(eleccion)
-                           {
-                               case 1: //crear cliente
-                                    cli.incluirCliente(cli, entry);
-                                   break;
-                               case 2: //listar
-                                  cli.listarClientes(listaClientes, DNI);
-                                   break; 
-                               case 3: //eliminar
-                                   System.out.println("Ingrese el DNI del cliente que desea eliminar: \n");
-                                   int dni = Integer.parseInt(entry.nextLine());
-                                   cli.eliminarCliente(listaClientes, dni);
-                                   break;
-                               case 4: //modificar
-                                   System.out.println("Ingrese el DNI del cliente que desea modificar: \n");
-                                   dni = Integer.parseInt(entry.nextLine());
-                                   cli.modificarCliente(listaClientes, dni, entry);
-                                   break; 
-                               case 0:
-                                   regresar = true; 
-                                   break; 
-                               default: 
-                                   System.out.println("Opción inválida");
-                                   break; 
-                           }
-                       }
-                        break; 
-                    case 3: //proveedores
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Crear proveedor. ");
-                       System.out.println(" 2 - Listar proveedores. ");
-                       System.out.println(" 3 - Eliminar proveedores. ");
-                       System.out.println(" 4 - Modificar proveedores. ");
-                       System.out.println(" 0 - Regresar. ");
-                       
-                       Proveedor prove = new Proveedor(); 
-                       eleccion = Integer.parseInt(entry.nextLine()); 
-                       regresar = false;
-                        while(!regresar)
-                       {
-                           switch(eleccion)
-                           {
-                               case 1: //crear
-                                   prove.insertarProveedor(prove, entry);
-                                   break; 
-                               case 2: //listar
-                                   prove.listarProveedor(listaProve, DNI);
-                                   break; 
-                               case 3: //eliminar
-                                   System.out.println("Ingrese el RUC del proveedor que desea eliminar: ");
-                                   String RUC = entry.nextLine(); 
-                                   prove.eliminarProveedor(listaProve, RUC);
-                                   break;
-                               case 4: //modificar
-                                   System.out.println("Ingrese el RUC del proveedor que desea modificar: ");
-                                   RUC = entry.nextLine(); 
-                                   prove.modificarProveedor(listaProve, RUC, entry);
-                                   break; 
-                               case 0:
-                                   regresar = true; 
-                                   break; 
-                               default: 
-                                   System.out.println("Opción inválida");
-                                   break; 
-                           }
-                       }
+                        Ventas ven = new Ventas();
+                        ven.VentaOpciones(listaVenta, listArticulo);
                         break;
+//                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
+//                       System.out.println(" 1 - Listar ventas. ");
+//                       System.out.println(" 2 - Eliminar ventas. ");
+//                       System.out.println(" 3 - Modificar ventas. ");                       
+//                       System.out.println(" 0 - Regresar. ");
+//                       
+//                       int eleccion = Integer.parseInt(entry.nextLine());
+//                       Ventas ven = new Ventas(); 
+//                       boolean regresar = false; 
+//                       while(!regresar)
+//                       {
+//                           switch(eleccion)
+//                           {                              
+//                               case 1: //listar                                   
+//                                   ven.listarVentas(listaVenta, listaVenta.size()-1);
+//                                   regresar = true;
+//                                   break; 
+//                               case 2: //eliminar
+//                                   System.out.println("Introduzca el nroVenta que desea eliminar.");
+//                                   int nroV = Integer.parseInt(entry.nextLine()); 
+//                                   ven.eliminarVenta(listaVenta, nroV);
+//                                   break;
+//                               case 3: //modificar
+//                                   System.out.println("Introduzca el nroVenta que desea modificar.");
+//                                   nroV = Integer.parseInt(entry.nextLine());
+//                                   ven.modificarVentas(listaVenta, nroV, entry, listArticulo);
+//                                   break; 
+//                               case 0:
+//                                   regresar = true; 
+//                                   break; 
+//                               default: 
+//                                   System.out.println("Opción inválida");
+//                                   break; 
+//                           }
+//                       }
+//                        break; 
+                    case 2: //clientes
+                       Cliente cliente = new Cliente();
+                       cliente.articuloOpcionesV(listaClientes);
+                       break;
+                    case 3: //proveedores
+                       Proveedor proveedor = new Proveedor();
+                       proveedor.proveedorOpciones(listaProve);
+                       break;
                     case 4: //articulos
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Crear artículos. ");
-                       System.out.println(" 2 - Listar artículos. ");
-                       System.out.println(" 3 - Eliminar artículos. ");
-                       System.out.println(" 4 - Modificar artículos. ");
-                       System.out.println(" 0 - Regresar. ");
-                       Articulo art = new Articulo(); 
-                       eleccion = Integer.parseInt(entry.nextLine()); 
-                       regresar = false;
-                        while(!regresar)
-                       {
-                           switch(eleccion)
-                           {
-                               case 1: // crear
-                                   art.insertarArticulo(art, entry);
-                                   break;
-                               case 2: //listar
-                                   art.listarArticulo(listArticulo, Integer.parseInt(art.codigo));
-                                   break; 
-                               case 3: //eliminar
-                                   System.out.println("Inserte codigo de articulo que desea eliminar: ");
-                                   int cod = Integer.parseInt(entry.nextLine()); 
-                                   art.eliminarArticulo(listArticulo, cod);
-                                   break;
-                               case 4: //modificar
-                                   System.out.println("Inserte codigo de articulo que desea modificar: ");
-                                   cod = Integer.parseInt(entry.nextLine()); 
-                                   art.modificarArticulo(listArticulo, cod, entry);
-                                   break; 
-                               case 0:
-                                   regresar = true; 
-                                   break; 
-                               default: 
-                                   System.out.println("Opción inválida");
-                                   break; 
-                           }
-                       }
-                        break; 
+                        Articulo articulo = new Articulo();
+                        articulo.articuloOpciones(listArticulo);
+                        break;
                     case 5: //vendedores
-                       System.out.println("====SELECCIONE ALGUNA OPCION ===");
-                       System.out.println(" 1 - Incluir vendedor ");
-                       System.out.println(" 2 - Listar vendedores. ");
-                       System.out.println(" 3 - Eliminar vendedor. ");
-                       System.out.println(" 4 - Modificar vendedor. ");
-                       System.out.println(" 0 - Regresar. ");
-                       eleccion = Integer.parseInt(entry.nextLine()); 
-                       regresar = false;
-                        while(!regresar)
-                       {
-                           switch(eleccion)
-                           {
-                               case 1: //incluir
-                                   Vendedores vend = new Vendedores(); 
-                                   incluirVendedor(vend,entry); 
-                                   break;
-                               case 2: //listar
-                                   listarVendedores(listaVendedores, DNI); 
-                                   break; 
-                               case 3: //eliminar
-                                   System.out.println("Ingresar el dni del vendedor que desea eliminar:"); 
-                                   int dni = Integer.parseInt(entry.nextLine()); 
-                                   eliminarVendedor(listaVendedores,dni); 
-                                   break;
-                               case 4: //modificar
-                                   System.out.println("Ingresar el dni del vendedor que desea modificar:"); 
-                                   dni = Integer.parseInt(entry.nextLine()); 
-                                   modificarVendedor(listaVendedores,dni,entry); 
-                                   break; 
-                               case 0:
-                                   regresar = true; 
-                                   break; 
-                               default: 
-                                   System.out.println("Opción inválida");
-                                   break; 
-                           }
-                       }
+                        Vendedores vendedor = new Vendedores();
+                        vendedor.vendedorOpcionesAdmin(listaVendedores);
                         break; 
                     case 6: //tienda
                          System.out.println("==== EN MANTENIMIENTO JIJI ===");
@@ -453,4 +316,51 @@ public class Vendedores
         
     }
     
+    public void vendedorOpcionesAdmin(ArrayList<Vendedores> listaVendedores){
+        
+        Scanner entry = new Scanner(System.in);
+        
+        boolean regresar = false;
+        while(!regresar){
+            System.out.println("====SELECCIONE LAS OPCIONES PARA VENDEDOR===");
+            System.out.println(" 1 - Crear Vendedor ");
+            System.out.println(" 2 - Listar Vendedores");
+            System.out.println(" 3 - Eliminar Vendedor ");
+            System.out.println(" 4 - Modificar Vendedor ");
+            System.out.println(" 0 - Regresar ");
+            
+            int option = Integer.parseInt(entry.nextLine());
+            switch(option) {
+                case 1:
+                    Vendedores ven = new Vendedores(); 
+                    incluirVendedor(ven, entry);
+                    listaVendedores.add(ven);
+                    break;
+                case 2:
+                    if(listaVendedores.size()==0){
+                        System.out.println("No hay registro de Vendedors");
+                    }else{
+                        listarVendedores(listaVendedores,listaVendedores.size()-1); 
+                    }
+                    break;
+                case 3:
+                    System.out.println(" Ingrese el DNI del Vendedor para eliminar");
+                    int eli = Integer.parseInt(entry.nextLine());
+                    eliminarVendedor(listaVendedores, eli);
+                    break;
+                case 4:
+                    System.out.println(" Ingrese el DNI del Vendedor para mdificar");
+                    int cod = Integer.parseInt(entry.nextLine());
+                    modificarVendedor(listaVendedores, cod, entry);
+                    break;
+                case 0:
+                    regresar = true;
+                    System.out.println("Regresando\n");
+                    break;
+                default:
+                    System.out.println("Opcion invalida!\n");
+                break;
+            }
+        }
+    }
 }

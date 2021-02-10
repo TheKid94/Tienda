@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Proveedor {
-    private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\proveedores.txt";
+    //private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\proveedores.txt";
+    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\proveedores.txt";
     public String ruc;
     public String razon_social;
     public String correo;
@@ -78,12 +79,14 @@ public class Proveedor {
                     }
                     break;
                 case 3:
-                    System.out.println(" Ingrese el id del Proveedor para eliminar");
-                    eliminarProveedor(listaProveedor, entry.nextLine());
+                    System.out.println(" Ingrese el RUC del Proveedor para eliminar");
+                    String eli = entry.nextLine();
+                    eliminarProveedor(listaProveedor, eli);
                     break;
                 case 4:
-                    System.out.println(" Ingrese el id del Proveedor a mdificar");
-                    modificarProveedor(listaProveedor, entry.nextLine(), entry);
+                    System.out.println(" Ingrese el RUC del Proveedor a mdificar");
+                    String cod = entry.nextLine();
+                    modificarProveedor(listaProveedor, cod, entry);
                     break;
                 case 0:
                     regresar = true;
@@ -101,7 +104,7 @@ public class Proveedor {
                     System.out.println("Ingrese Razon Social: ");
                     pr.setRazon_social(entry.nextLine());
                     
-                    System.out.println("Ingrese Razon RUC: ");
+                    System.out.println("Ingrese RUC: ");
                     pr.setRuc(entry.nextLine());
                     
                     System.out.println("Ingrese Correo: ");
@@ -114,7 +117,7 @@ public class Proveedor {
     public void eliminarProveedor(ArrayList<Proveedor> lista, String eli){
         for(int i=0; i<lista.size(); i++){
             Proveedor pr_cod = lista.get(i);
-            if(eli == pr_cod.getRuc()){
+            if(pr_cod.getRuc().toString() == eli){
                 lista.remove(i);
                 System.out.println("=========================");
                 System.out.println("PROVEEDOR ELIMINADO\n");
@@ -126,7 +129,7 @@ public class Proveedor {
     public void modificarProveedor(ArrayList<Proveedor> lista, String cod, Scanner entry){
         for (int i = 0; i < lista.size(); i++) {
             Proveedor pr_cod = lista.get(i);
-            if(cod == pr_cod.getRuc()){
+            if(pr_cod.getRuc() == cod ){
                 System.out.println("Razón Social: " + pr_cod.getRazon_social());
                 System.out.println("RUC: " + pr_cod.getRuc());
                 System.out.println("Correo: " + pr_cod.getCorreo());

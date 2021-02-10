@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Articulo {
-    private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\articulos.txt";
+    //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\articulos.txt";
+    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\articulos.txt";
     public String codigo;
     public String nombre;
     public double precio;

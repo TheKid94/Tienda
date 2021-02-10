@@ -28,6 +28,9 @@ public class Main {
         Articulo ar = new Articulo();
         ar.getDatosTxt(listArticulo);
         pr.getDatosTxt(listaProveedor);
+        cli.getDatosClienteTxt(listaCliente);
+        vend.getDatosVendedoresTxt(listaVendedores);
+        vent.getDatosVentaTxt(listaVentas);
   
      
 //        String []articulos = new String[10]; 
