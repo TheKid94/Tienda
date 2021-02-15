@@ -1,3 +1,4 @@
-12345678, John, Wilk, Goodman
-10203040, Walter, White, Heisenberg
-87654231, Jesse, Pinkman, Biznets
+10203040, Walter, White, Heisenberg, A, 1
+12345678, John, Wilk, Goodman, A, 2
+77654231, Jesse, Pinkman, Biznets, I, 3
+85654231, William, Dravner, Draper, I, 4

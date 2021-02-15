@@ -8,7 +8,10 @@ package lab_EDA;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -135,14 +138,13 @@ public class Principal extends javax.swing.JFrame {
     private void btnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseClicked
         LoginCliente login = new LoginCliente();
         this.dispose();
-        login.setVisible(rootPaneCheckingEnabled);
+        login.setVisible(true);
     }//GEN-LAST:event_btnClienteMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

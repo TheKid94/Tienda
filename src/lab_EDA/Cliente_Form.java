@@ -8,6 +8,7 @@ package lab_EDA;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Collections;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -23,6 +24,7 @@ public class Cliente_Form extends javax.swing.JFrame {
     String apellidom = "";
     
     ArrayList<Cliente> lista = new ArrayList<>();
+    ArrayList<Cliente> listaux = new ArrayList<>();
     Cliente cli = new Cliente();
     
     public Cliente_Form() {
@@ -259,13 +261,17 @@ public class Cliente_Form extends javax.swing.JFrame {
 
     public void mostrarDatos(){
         String matriz[][] = new String[lista.size()][4];
-    
+        Collections.sort(lista);
+        listaux.clear();
+        for(Cliente arrCli: lista){
+            listaux.add(arrCli);
+        }
         for (int i = 0; i < lista.size(); i++) {
             
-            matriz[i][0]=String.valueOf(lista.get(i).getDNI());
-            matriz[i][1]=lista.get(i).getNombre();
-            matriz[i][2]=lista.get(i).getApellidoPa();
-            matriz[i][3]=lista.get(i).getApellidoMa();
+            matriz[i][0]=String.valueOf(listaux.get(i).getDNI());
+            matriz[i][1]=listaux.get(i).getNombre();
+            matriz[i][2]=listaux.get(i).getApellidoPa();
+            matriz[i][3]=listaux.get(i).getApellidoMa();
                               
         }
         

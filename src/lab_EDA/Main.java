@@ -7,6 +7,7 @@ package lab_EDA;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
               /**
  *
@@ -31,7 +32,7 @@ public class Main {
         cli.getDatosClienteTxt(listaCliente);
         vend.getDatosVendedoresTxt(listaVendedores);
         vent.getDatosVentaTxt(listaVentas);
-  
+        
      
 //        String []articulos = new String[10]; 
 //        articulos[0] = "Pack de sarten con diseño"; 
@@ -73,6 +74,7 @@ public class Main {
                     cli.ClienteOpciones(listaCliente, listaVentas, listArticulo);
                     break;     
                 case 2: //Vendedor
+                    
                     vend.VendedorOpciones(listaVendedores, listaCliente, listaVentas, listArticulo, listaProveedor);                
     
                 
