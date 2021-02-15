@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Vendedores 
 {
     //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\vendedores.txt";
-    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\vendedores.txt";
+    private static final String FILENAME = "src/datos/vendedores.txt";
     public int DNI;
     public String nombre;
     public String ApellidoPa;

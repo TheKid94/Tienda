@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Articulo {
     //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\articulos.txt";
-    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\articulos.txt";
+    private static final String FILENAME = "src/datos/articulos.txt";
     public String codigo;
     public String nombre;
     public double precio;
@@ -61,6 +61,7 @@ public class Articulo {
             System.out.println(" 2 - Listar Articulos");
             System.out.println(" 3 - Eliminar Articulo ");
             System.out.println(" 4 - Modificar Articulo ");
+            System.out.println(" 5 - Mayor a Menor ");
             System.out.println(" 0 - Regresar ");
             
             int option = Integer.parseInt(entry.nextLine());

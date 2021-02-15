@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Proveedor {
     //private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\proveedores.txt";
-    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\proveedores.txt";
+    private static final String FILENAME = "src/datos/proveedores.txt";
     public String ruc;
     public String razon_social;
     public String correo;

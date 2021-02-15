@@ -26,7 +26,7 @@ public class Ventas {
     private int nroVentas;
     private int cantidad;
     //private static final String FILENAME = "F:\\JAREKYALE\\clases 2020 2\\EDA\\Java\\TienditaRecursivo2\\src\\datos\\ventas.txt";
-    private static final String FILENAME = "D:\\prueba2\\TiendaRecursivo\\src\\datos\\ventas.txt";
+    private static final String FILENAME = "src/datos/ventas.txt";
  
     
     // Este constructor nos permite crear una venta sin ningún atributo.
@@ -85,6 +85,18 @@ public class Ventas {
         this.articulo = art;
     } 
     
+    public int compareTo(Ventas ventas) {
+        int comparar=((Ventas)ventas).getNroV();
+        /* For Ascending order*/
+        return this.nroVentas-comparar;
+        /* For Descending order do like this */
+        //return compareage-this.studentage;
+    }
+    
+    @Override
+    public String toString() {
+        return "[ Nro. Ventas=" + nroVentas + ", articulo=" + articulo + ", cliente=" + cliente  + ", DNI=" + DNI + "]";
+    }
    
     public void CrearVenta(Ventas ven, Scanner entrada, ArrayList<Ventas> listaVentas, ArrayList<Articulo> listArticulo, int dni,String nombre){
                     System.out.println("¡Hola!");
@@ -258,7 +270,8 @@ public class Ventas {
             System.out.println("====SELECCIONE ALGUNA OPCION ===");
             System.out.println(" 1 - Listar ventas. ");
             System.out.println(" 2 - Eliminar ventas. ");
-            System.out.println(" 3 - Modificar ventas. ");                       
+            System.out.println(" 3 - Modificar ventas. ");
+            System.out.println(" 4 - Menor a Mayor. ");
             System.out.println(" 0 - Regresar. ");
             
             int option = Integer.parseInt(entry.nextLine());
@@ -280,6 +293,7 @@ public class Ventas {
                     int cod = Integer.parseInt(entry.nextLine());
                     modificarVentas(listaVentas, cod, entry, listArticulos);
                     break;
+                
                 case 0:
                     regresar = true;
                     System.out.println("Regresando\n");
@@ -291,5 +305,7 @@ public class Ventas {
         }
         
     }
+     
+     
     
 }
