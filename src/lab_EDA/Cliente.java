@@ -23,9 +23,7 @@ public class Cliente implements Comparable<Cliente>{
     public int DNI;
     public String nombre;
     public String ApellidoPa;
-    public String ApellidoMa; 
-    public String Estado;
-    public int orden;
+    public String ApellidoMa;
     
       public Cliente() 
       {
@@ -77,21 +75,21 @@ public class Cliente implements Comparable<Cliente>{
         this.ApellidoMa = ApellidoMa; 
     }
 
-    public String getEstado() {
-        return Estado;
-    }
-
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
-    }
-
-    public int getOrden() {
-        return orden;
-    }
-
-    public void setOrden(int orden) {
-        this.orden = orden;
-    }
+//    public String getEstado() {
+//        return Estado;
+//    }
+//
+//    public void setEstado(String Estado) {
+//        this.Estado = Estado;
+//    }
+//
+//    public int getOrden() {
+//        return orden;
+//    }
+//
+//    public void setOrden(int orden) {
+//        this.orden = orden;
+//    }
     
     public void ClienteOpciones(ArrayList<Cliente> listaClientes, ArrayList<Ventas> listaVentas, ArrayList<Articulo> listArticulo)    
     {
